@@ -29,6 +29,7 @@ public class NaivelyConcurrentTotalFileSize {
             }
 
             for (Future<Long> partialToFuture : partialToFutures) {
+                //如果这个地方不加超时时间，可能会一直没法终止
                 total += partialToFuture.get(100, TimeUnit.SECONDS);
             }
         }
